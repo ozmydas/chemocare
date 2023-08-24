@@ -27,50 +27,49 @@
                     <div class="flex justify-between">
                         <div class="flex-auto">
                             <p class="mb-6 text-gray-500 dark:text-gray-400 leading-relaxed">
-                                Halaman Manajemen Kategori Kanker memungkinkan pengguna untuk mengatur daftar kategori kanker dengan mudah dan efisien. Dengan tampilan yang intuitif, pengguna dapat menambah, mengubah, menghapus, dan melihat informasi kategori kanker dengan cepat.
+                                Halaman Manajemen Kategori Kanker memungkinkan pengguna untuk mengatur daftar kategori
+                                kanker dengan mudah dan efisien. Dengan tampilan yang intuitif, pengguna dapat menambah,
+                                mengubah, menghapus, dan melihat informasi kategori kanker dengan cepat.
                             </p>
                         </div>
                         <div class="flex-none">
-                            {{-- <button wire:click="create()"
+                            <button wire:click="create()"
                                 class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded my-3"><i
                                     class="fa-solid fa-folder-plus fa-fade"></i> Create
-                                New</button> --}}
+                                New</button>
                         </div>
                     </div>
 
 
                     @if ($isModalOpen)
-                        @include('livewire.patient-biodata.patient-biodata-create')
+                        @include('livewire.education-article.education-article-create')
                     @endif
 
                     {{-- table start --}}
-                    <div class="min-w-full bg-white dark:bg-gray-800 shadow rounded-lg border dark:border-gray-600">
+                    <div
+                        class="min-w-full bg-white dark:bg-gray-800 shadow rounded-lg border dark:border-gray-600 overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                             <thead class="bg-gray-100 dark:bg-gray-700">
                                 <tr>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
-                                        Name
+                                        Thumbnail
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
-                                        Age
+                                        Category
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
-                                        Gender
+                                        Tag
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
-                                        Phone
+                                        Title
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
-                                        Address
-                                    </th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
-                                        Cancer Detail
+                                        Preview Content
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
@@ -82,23 +81,24 @@
                                 <!-- Start Row -->
                                 @foreach ($posts as $post)
                                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-gray-100">
-                                            {{ $post->name }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-gray-100">
-                                            {{ $post->age }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-gray-100">
-                                            {{ $post->gender }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-gray-100">
-                                            {{ $post->phone }}
+                                        <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
+                                            {{ $post->thumbnail }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
-                                            {{ $post->address }}
+                                            {{ $post->category }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
-                                            {{ $post->cancer_name }} - stadium : {{ $post->cancer_stadium }}
+                                            {{ $post->tag }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
+                                            {{ $post->title }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
+                                            @php
+                                                $content_preview = strip_tags($post->content);
+                                                strlen($content_preview) > 50 ? substr($content_preview, 0, 50) . '...' : $content_preview;
+                                                echo $content_preview;
+                                            @endphp
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm space-x-4"> <button
                                                 wire:click="edit({{ $post->id }})"

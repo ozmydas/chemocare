@@ -28,13 +28,13 @@
                         Detail Stadium Kanker
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('education-effect')">
-                        Edukasi Efek Samping
+                    <x-nav-link href="{{ route('education-article') }}" :active="request()->routeIs('education-article')">
+                        Artikel Edukasi
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('education-teraphy')">
+                    {{-- <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('education-teraphy')">
                         Edukasi Terapi
-                    </x-nav-link>
+                    </x-nav-link> --}}
 
                 </div>
             </div>

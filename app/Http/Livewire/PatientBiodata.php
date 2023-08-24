@@ -7,7 +7,7 @@ use App\Models\PatientBiodata as MyModel;
 
 class PatientBiodata extends Component
 {
-    public $posts, $name, $age, $gender, $address, $phone, $post_id;
+    public $posts, $name, $age, $gender, $address, $phone, $cancer_name, $cancer_stadium, $post_id;
     public $isModalOpen = 0;
 
     protected $listeners = ['deleteData' => 'delete'];
@@ -50,6 +50,8 @@ class PatientBiodata extends Component
             'gender' => 'required',
             'phone' => 'required',
             'address' => 'required',
+            'cancer_name' => 'required',
+            'cancer_stadium' => 'required',
         ]);
     
         MyModel::updateOrCreate(['id' => $this->post_id], [
@@ -58,6 +60,8 @@ class PatientBiodata extends Component
             'gender' => $this->gender,
             'phone' => $this->phone,
             'address' => $this->address,
+            'cancer_name' => $this->cancer_name,
+            'cancer_stadium' => $this->cancer_stadium,
         ]);
 
         session()->flash('message', $this->post_id ? 'Data updated successfully.' : 'Data added successfully.');
@@ -75,6 +79,8 @@ class PatientBiodata extends Component
         $this->gender = $post->gender;
         $this->phone = $post->phone;
         $this->address = $post->address;
+        $this->cancer_name = $post->cancer_name;
+        $this->cancer_stadium = $post->cancer_stadium;
     
         $this->openModal();
     }

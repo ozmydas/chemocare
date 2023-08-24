@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\CancerCategory;
 use App\Http\Livewire\CancerDetail;
 use App\Http\Livewire\PatientBiodata;
+use App\Http\Livewire\EducationArticle;
 
 // Route::get('/cancer-categories', CancerCategory::class)->name('cancer-categories')->middleware('auth');
 
@@ -35,7 +36,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/patient-biodata', PatientBiodata::class)->name('patient-biodata');
     Route::get('/cancer-category', CancerCategory::class)->name('cancer-category');
     Route::get('/cancer-detail', CancerDetail::class)->name('cancer-detail');
-    Route::get('/patient-biodata', PatientBiodata::class)->name('patient-biodata');
+    Route::get('/education-article', EducationArticle::class)->name('education-article');
 });

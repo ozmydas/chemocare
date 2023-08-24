@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class EducationArticle extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'category', 'tag', 'title', 'content', 'thumbnail', 'video_url'
+    ];
 }
