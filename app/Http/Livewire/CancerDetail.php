@@ -3,11 +3,19 @@
 namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\CancerDetail as MyModel;
+use App\Models\CancerCategory as SelectionModel;
+use Livewire\WithFileUploads;
 
 class CancerDetail extends Component
 {
+    use WithFileUploads;
+
     public $posts, $category_id, $title, $content, $thumbnail, $video_url, $post_id;
     public $isModalOpen = 0;
+
+    public $category_selection = [
+        ['id' => 0, 'name' => "Loading . . . .", "disabled" => true],
+    ];
 
     protected $listeners = ['deleteData' => 'delete'];
 
@@ -20,12 +28,14 @@ class CancerDetail extends Component
     public function create()
     {
         $this->resetCreateForm();
+        
         $this->openModal();
     }
 
     public function openModal()
     {
         $this->isModalOpen = true;
+        $this->category_selection = SelectionModel::all()->toArray();
     }
 
     public function closeModal()
@@ -48,14 +58,22 @@ class CancerDetail extends Component
             'title' => 'required',
             'content' => 'required',
         ]);
-    
-        MyModel::updateOrCreate(['id' => $this->post_id], [
+
+        $indata = [
             'category_id' => intval($this->category_id),
             'title' => $this->title,
             'content' => $this->content,
-            'thumbnail' => $this->thumbnail,
             'video_url' => $this->video_url,
-        ]);
+        ];
+
+        if(! is_string($this->thumbnail)):
+            $uploaded_file = time() . '.' . $this->thumbnail->extension();
+            $this->thumbnail->storeAs('public/uploads', $uploaded_file);  // menyimpan gambar ke dalam folder 'storage/app/public/uploads'
+
+            $indata['thumbnail'] = $uploaded_file;
+        endif;
+
+        MyModel::updateOrCreate(['id' => $this->post_id], $indata);
 
         session()->flash('message', $this->post_id ? 'Data updated successfully.' : 'Data added successfully.');
 
@@ -80,5 +98,12 @@ class CancerDetail extends Component
     {
         MyModel::find($id)->delete();
         session()->flash('message', 'Data deleted successfully.');
+    }
+
+    public function updatedPhoto()
+    {
+        $this->validate([
+            'thumbnail' => 'image|max:1024',
+        ]);
     }
 } 

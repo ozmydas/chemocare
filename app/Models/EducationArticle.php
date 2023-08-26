@@ -10,6 +10,6 @@ class EducationArticle extends Model
     use HasFactory;
     
     protected $fillable = [
-        'category', 'tag', 'title', 'content', 'thumbnail', 'video_url'
+        'category', 'label', 'title', 'content', 'thumbnail', 'video_url'
     ];
 }

@@ -79,7 +79,10 @@
                                             {{ $post->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
-                                            {{ $post->description }}
+                                            @php
+                                                $content_preview = strip_tags($post->description);
+                                                echo strlen($content_preview) > 100 ? substr($content_preview, 0, 100) . '...' : $content_preview;
+                                            @endphp
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm space-x-4"> <button
                                                 wire:click="edit({{ $post->id }})"

@@ -12,25 +12,47 @@
                     <div class="">
                         <div class="mb-4">
                             <label for="category_id" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
-                            <input category_id="text"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="category_id" placeholder="Enter Category" wire:model="category_id">
+                            <select wire:model="category_id" class="mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="" disabled>Pilih Kategori Kanker</option>
+                                @foreach($category_selection as $key => $item)
+                                    <option value="{{ $item['id'] }}" <?=@$item['disabled'] ? 'disabled' : '';?>>{{ $item['name'] }}</option>
+                                @endforeach
+                            </select>
                             @error('category_id')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         
                         <div class="mb-4">
-                            <label for="thumbnail"
-                                class="block text-gray-700 text-sm font-bold mb-2">Thumbnail / Images</label>
-                            <input type="text"
+                            <label for="thumbnail" class="block text-gray-700 text-sm font-bold mb-2">Thumbnail /
+                                Images</label>
+                            <input type="file"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="thumbnail" placeholder="Enter Images" wire:model="thumbnail">
-                            @error('thumbnail') <span class="text-red-500">{{ $message }}</span>@enderror
+                                id="thumbnail" placeholder="Enter Images" wire:model="thumbnail" accept="image/*">
+
+
+                            @if ($thumbnail)
+                                <div>
+                                    <?php if( ! is_string($thumbnail)):?>
+                                    <h3 class="block text-gray-700 text-sm font-bold mb-2 mt-2">Image Preview</h3>
+                                    <div
+                                        class="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-md p-4 h-[200px] overflow-hidden relative">
+                                        <img src="{{ @$thumbnail->temporaryUrl() }}" alt="Preview"
+                                            class="max-h-full object-cover" id="previewImage">
+                                        {{-- <span class="text-gray-500 absolute inset-0 flex items-center justify-center" id="placeholderText">Drag & drop or click to upload</span> --}}
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                            @endif
+
+                            @error('thumbnail')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Judul Halaman</label>
+                            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Judul
+                                Halaman</label>
                             <input type="text"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="title" placeholder="Enter title" wire:model="title">
@@ -42,21 +64,25 @@
                         <div class="mb-4">
                             <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Konten
                                 Deskripsi</label>
-                            <textarea
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                rows="8" id="content" wire:model="content" placeholder="content"></textarea>
+                            <div wire:ignore>
+                                <textarea
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    rows="8" id="content" wire:model.debounce.500ms="content" placeholder="content"></textarea>
+                            </div>
                             @error('content')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="video_url"
-                                class="block text-gray-700 text-sm font-bold mb-2">Video URL (optional)</label>
+                            <label for="video_url" class="block text-gray-700 text-sm font-bold mb-2">Video URL
+                                (optional)</label>
                             <input type="text"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="video_url" placeholder="Enter Video URL" wire:model="video_url">
-                            @error('video_url') <span class="text-red-500">{{ $message }}</span>@enderror
+                            @error('video_url')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -80,12 +106,43 @@
 </div>
 
 
+
 {{-- SCRIPT BELOW HERE --}}
 
+<style>
+    .ck-editor__editable {
+        height: 300px !important;
+    }
+</style>
+
 <script>
-    // ClassicEditor
-    //     .create( document.querySelector( '#description' ) )
-    //     .catch( error => {
-    //         console.error( error );
-    //     } );
+    ClassicEditor
+        .create(document.querySelector('#content'), {
+            toolbar: {
+                viewportTopOffset: 100
+            },
+            height: '300px'
+        })
+        .then(editor => {
+            editor.model.document.on('change:data', () => {
+                @this.set('content', editor.getData());
+            })
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+<script>
+    function updatePreview(input, target) {
+        let file = input.files[0];
+        let reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = function() {
+            let img = document.getElementById(target);
+            // can also use "this.result"
+            img.src = reader.result;
+        }
+    }
 </script>

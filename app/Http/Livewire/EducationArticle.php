@@ -11,8 +11,16 @@ class EducationArticle extends Component
 {
     use WithFileUploads;
 
-    public $posts, $category, $tag, $title, $content, $thumbnail, $video_url, $post_id;
+    public $posts, $category, $label, $title, $content, $thumbnail, $video_url, $post_id;
     public $isModalOpen = 0;
+    public $category_selection = [
+        ['id' => 'edukasi', 'name' => "Edukasi"],
+    ];
+    public $label_selection = [
+        ['id' => 'efek-samping', 'name' => "Efek Samping"],
+        ['id' => 'terapi', 'name' => "Terapi"],
+    ];
+
 
     protected $listeners = ['deleteData' => 'delete'];
 
@@ -38,37 +46,44 @@ class EducationArticle extends Component
         $this->isModalOpen = false;
     }
 
-    private function resetCreateForm(){
-        $this->category = '';
-        $this->tag = '';
+    private function resetCreateForm()
+    {
+        $this->category = 'edukasi';
+        $this->label = '';
         $this->title = '';
         $this->content = '';
         $this->thumbnail = '';
         $this->video_url = '';
     }
-    
+
     public function store()
     {
         $this->validate([
             'category' => 'required',
-            'tag' => 'required',
+            'label' => 'required',
             'title' => 'required',
             'content' => 'required',
             // 'thumbnail' => 'required',
             // 'video_url' => 'required',
         ]);
 
-        $uploaded_file = time() . '.' . $this->thumbnail->extension();
-        $this->thumbnail->storeAs('public/uploads', $uploaded_file);  // menyimpan gambar ke dalam folder 'storage/app/public/uploads'
-    
-        MyModel::updateOrCreate(['id' => $this->post_id], [
+        $indata = [
             'category' => $this->category,
-            'tag' => $this->tag,
+            'label' => $this->label,
             'title' => $this->title,
             'content' => $this->content,
-            'thumbnail' => $uploaded_file,
             'video_url' => $this->video_url,
-        ]);
+        ];
+
+
+        if (!is_string($this->thumbnail)):
+            $uploaded_file = time() . '.' . $this->thumbnail->extension();
+            $this->thumbnail->storeAs('public/uploads', $uploaded_file); // menyimpan gambar ke dalam folder 'storage/app/public/uploads'
+
+            $indata['thumbnail'] = $uploaded_file;
+        endif;
+
+        MyModel::updateOrCreate(['id' => $this->post_id], $indata);
 
         session()->flash('message', $this->post_id ? 'Data updated successfully.' : 'Data added successfully.');
 
@@ -81,15 +96,15 @@ class EducationArticle extends Component
         $post = MyModel::findOrFail($id);
         $this->post_id = $id;
         $this->category = $post->category;
-        $this->tag = $post->tag;
+        $this->label = $post->label;
         $this->title = $post->title;
         $this->content = $post->content;
         $this->thumbnail = $post->thumbnail;
         $this->video_url = $post->video_url;
-    
+
         $this->openModal();
     }
-    
+
     public function delete($id)
     {
         MyModel::find($id)->delete();

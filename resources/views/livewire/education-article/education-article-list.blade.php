@@ -61,7 +61,7 @@
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
-                                        Tag
+                                        Label
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-200 uppercase tracking-wider border-b dark:border-gray-600">
@@ -82,13 +82,13 @@
                                 @foreach ($posts as $post)
                                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
-                                            {{ $post->thumbnail }}
+                                            <img style="height:60px; width: auto" src="{{ asset('storage/uploads/' . $post->thumbnail) }}"/>
                                         </td>
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
                                             {{ $post->category }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
-                                            {{ $post->tag }}
+                                            {{ $post->label }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
                                             {{ $post->title }}
@@ -96,8 +96,7 @@
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
                                             @php
                                                 $content_preview = strip_tags($post->content);
-                                                strlen($content_preview) > 50 ? substr($content_preview, 0, 50) . '...' : $content_preview;
-                                                echo $content_preview;
+                                                echo strlen($content_preview) > 100 ? substr($content_preview, 0, 100) . '...' : $content_preview;
                                             @endphp
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm space-x-4"> <button

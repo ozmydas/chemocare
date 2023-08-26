@@ -75,7 +75,7 @@
                                 @foreach ($posts as $post)
                                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-gray-100">
-                                            {{ $post->thumbnail }}
+                                            <img style="height:60px; width: auto" src="{{ asset('storage/uploads/' . $post->thumbnail) }}"/>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-gray-100">
                                             {{ $post->category_id }}
@@ -84,7 +84,10 @@
                                             {{ $post->title }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-normal text-gray-900 dark:text-gray-100">
-                                            {{ $post->content }}
+                                            @php
+                                                $content_preview = strip_tags($post->content);
+                                                echo strlen($content_preview) > 100 ? substr($content_preview, 0, 100) . '...' : $content_preview;
+                                            @endphp
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm space-x-4"> <button
                                                 wire:click="edit({{ $post->id }})"

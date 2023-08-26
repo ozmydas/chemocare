@@ -13,20 +13,26 @@
 
                         <div class="mb-4">
                             <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
-                            <input type="text"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="category" placeholder="Enter Category" wire:model="category">
+                            <select wire:model="category" class="mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" readonly>
+                                <option value="" disabled>Pilih Kategori Artikel</option>
+                                @foreach($category_selection as $key => $item)
+                                    <option value="{{ $item['id'] }}" <?=@$item['disabled'] ? 'disabled' : '';?>>{{ $item['name'] }}</option>
+                                @endforeach
+                            </select>
                             @error('category')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="tag" class="block text-gray-700 text-sm font-bold mb-2">Tag</label>
-                            <input type="text"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="tag" placeholder="Enter Tag" wire:model="tag">
-                            @error('tag')
+                            <label for="label" class="block text-gray-700 text-sm font-bold mb-2">Label</label>
+                            <select wire:model="label" class="mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="" disabled>Pilih Label Artikel</option>
+                                @foreach($label_selection as $key => $item)
+                                    <option value="{{ $item['id'] }}" <?=@$item['disabled'] ? 'disabled' : '';?>>{{ $item['name'] }}</option>
+                                @endforeach
+                            </select>
+                            @error('label')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
