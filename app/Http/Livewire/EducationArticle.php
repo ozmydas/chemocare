@@ -18,7 +18,9 @@ class EducationArticle extends Component
     ];
     public $label_selection = [
         ['id' => 'efek-samping', 'name' => "Efek Samping"],
+        ['id' => 'penganan-efek-samping', 'name' => "Penanganan Efek Samping"],
         ['id' => 'terapi', 'name' => "Terapi"],
+        ['id' => 'umum', 'name' => "Umum"]
     ];
 
 

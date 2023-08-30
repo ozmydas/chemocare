@@ -5,6 +5,11 @@ $(function(){
         transitionEffect: "fade",
         enableAllSteps: true,
         transitionEffectSpeed: 500,
+        onFinished: function(event, currentIndex){
+
+            // alert("SUBMIT POST DISINI")
+            $('#myformku').submit()
+        },
         onStepChanging: function (event, currentIndex, newIndex) { 
             if ( newIndex === 1 ) {
                 $('.steps ul').addClass('step-2');
@@ -24,10 +29,11 @@ $(function(){
                 $('.steps ul').removeClass('step-4');
                 $('.actions ul').removeClass('step-last');
             }
+
             return true; 
         },
         labels: {
-            finish: "Place Holder",
+            finish: "Kirim",
             next: "Next",
             previous: "Previous"
         }

@@ -19,7 +19,8 @@
 		<div class="image-holder">
 			<img src="{{url('css/images/form-wizard.png')}}" alt="">
 		</div>
-		<form action="">
+		<form action="{{url('/tambah')}}" id="myformku" method="post">
+		{{ csrf_field() }}
 			<div id="wizard">
 				<!-- SECTION 1 -->
 				<h4></h4>
@@ -28,20 +29,20 @@
 						<label for="">
 							Nama Lengkap *
 						</label>
-						<input type="text" class="form-control">
+						<input type="text" name="name" class="form-control">
 					</div>
 					<div class="form-row">
 						<label for="">
 							Umur *
 						</label>
-						<input type="text" class="form-control">
+						<input type="text" name="age" class="form-control">
 					</div>
 					<div class="form-row">
 						<label for="">
 							Jenis Kelamin *
 						</label>
 						<div class="form-holder">
-							<select name="" id="" class="form-control">
+							<select name="gender" id="" class="form-control">
 								<option value="pria" class="option">Pria</option>
 								<option value="wanita" class="option">Wanita</option>
 							</select>
@@ -53,102 +54,48 @@
 						<label for="">
 							Alamat *
 						</label>
-						<input type="text" class="form-control">
+						<input type="text" name="address" class="form-control">
 					</div>
 					<div class="form-row">
 						<label for="">
 							Nomor Hp *
 						</label>
-						<input type="text" class="form-control">
+						<input type="text" name="phone" class="form-control">
 					</div>
 				</section>
 
 				<!-- SECTION 2 -->
 				<h4></h4>
 				<section>
+				@foreach($jeniscancer as $jc)
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-						<label class="form-check-label" for="flexCheckDefault">
-							Payudara
+						<input class="form-check-input" type="checkbox" name ="cancer_name[]" value="{{ $jc->name }}" id="cancer_{{ $jc->id }}">
+						<label class="form-check-label" for="cancer_{{ $jc->id }}">
+						{{ $jc->name }}
 						</label>
 					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-						<label class="form-check-label" for="flexCheckDefault">
-							Serviks
-						</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-						<label class="form-check-label" for="flexCheckDefault">
-							Usus
-						</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-						<label class="form-check-label" for="flexCheckDefault">
-							Kanker Darah
-						</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-						<label class="form-check-label" for="flexCheckDefault">
-							Lainnya
-						</label>
-					</div>
-					
+					@endforeach
+
+					<input type="text" name="cancer_name" class="form-control" placeholder="Kanker Lainnya isi di kolom ini">
+
+				
 				</section>
 
-				<!-- SECTION 3 -->
+				<!--SECTION 3-->
 				<h4></h4>
 				<section>
-					<div class="product">
-						<div class="item">
-							<div class="left">
-								<a href="#" class="thumb">
-									<img src="{{url('css/images/item-1.png')}}" alt="">
-								</a>
-								<div class="purchase">
-									<h6>
-										<a href="#">Low Table/Stool</a>
-									</h6>
-									<span>x4</span>
-								</div>
-							</div>
-							<span class="price">$29</span>
-						</div>
-						<div class="item">
-							<div class="left">
-								<a href="#" class="thumb">
-									<img src="{{url('css/images/item-2.png')}}" alt="">
-								</a>
-								<div class="purchase">
-									<h6>
-										<a href="#">Set of 3 Porcelain</a>
-									</h6>
-									<span>x2</span>
-								</div>
-							</div>
-							<span class="price">$124</span>
-						</div>
-					</div>
-					<div class="checkout">
-						<div class="subtotal">
-							<span class="heading">Subtotal</span>
-							<span>$364</span>
-						</div>
-						<p class="shipping">
-							<span class="heading">Shipping</span>
-							there are no shipping methods available. please double check your address, or contact us if you need any help.
-						</p>
-						<div class="total">
-							<span class="heading">Subtotal</span>
-							<span class="total-price">$364</span>
-						</div>
+				<div class="form-holder">
+							<select name="cancer_stadium" id="" class="form-control">
+								<option value="1" class="option">1</option>
+								<option value="2" class="option">2</option>
+								<option value="3" class="option">3</option>
+								<option value="4" class="option">4</option>
+							</select>
+							<i class="zmdi zmdi-caret-down"></i>
 					</div>
 				</section>
 
-				<!-- SECTION 4 -->
+				<!--SECTION 4 
 				<h4></h4>
 				<section>
 					<div class="checkbox-circle">
@@ -174,7 +121,7 @@
 							</div>
 						</label>
 					</div>
-				</section>
+				</section> -->
 			</div>
 		</form>
 	</div>
@@ -184,8 +131,15 @@
 	<!-- JQUERY STEP -->
 	<script src="{{url('css/js/jquery.steps.js')}}"></script>
 
-	<script src="{{url('css/js/main.js')}}"></script>
+	<script src="{{url('css/js/main.js?87')}}"></script>
 	<!-- Template created and distributed by Colorlib -->
 </body>
 
 </html>
+
+<script>
+
+	$('[href="#finish"]').click(()=>{
+		alert("ggggggggggg");
+	})
+</script>
