@@ -50,6 +50,7 @@ class EducationArticle extends Component
 
     private function resetCreateForm()
     {
+        $this->post_id = NULL;
         $this->category = 'edukasi';
         $this->label = '';
         $this->title = '';

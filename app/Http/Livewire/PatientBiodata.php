@@ -35,6 +35,7 @@ class PatientBiodata extends Component
     }
 
     private function resetCreateForm(){
+        $this->post_id = NULL;
         $this->name = '';
         $this->age = '';
         $this->gender = '';

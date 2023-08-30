@@ -44,6 +44,7 @@ class CancerDetail extends Component
     }
 
     private function resetCreateForm(){
+        $this->post_id = NULL;
         $this->category_id = '';
         $this->title = '';
         $this->content = '';
