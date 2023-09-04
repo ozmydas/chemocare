@@ -17,7 +17,7 @@ class TambahDataPasien extends Controller
      */
     public function tambah(Request $request)
     {
-        var_dump($request->post());
+        // var_dump($request->post());
         // insert data ke table pegawai
         DB::table('patient_biodatas')->insert([
             'name' => $request->name,
@@ -30,7 +30,7 @@ class TambahDataPasien extends Controller
         ]);
         
         // alihkan halaman ke halaman pegawai
-        // return redirect('sukses');
+        return view('home.thankyou');
     }
     
     public function index(){

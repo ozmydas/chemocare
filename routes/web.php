@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\EdukasiController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TambahDataPasien;
+use App\Http\Controllers\TerapiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\CancerCategory;
 use App\Http\Livewire\CancerDetail;
@@ -24,9 +27,12 @@ use App\Http\Livewire\EducationArticle;
 //     return view('beranda');
 // });
 
-Route::get('/', [TambahDataPasien::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/terapi', [TerapiController::class, 'index']);
+Route::get('/submit', [TambahDataPasien::class, 'index']);
 Route::post('/tambah', [TambahDataPasien::class, 'tambah']);
-Route::get('/edukasi', [Edukasi::class, 'index']);
+Route::get('/edukasi', [EdukasiController::class, 'index']);
+
 
 // YAANG DIBAWAH BUAT ADMIN DASHBOARD
 

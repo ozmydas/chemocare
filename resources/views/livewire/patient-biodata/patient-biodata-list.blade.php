@@ -45,7 +45,7 @@
 
                     {{-- table start --}}
                     <div class="min-w-full bg-white dark:bg-gray-800 shadow rounded-lg border dark:border-gray-600">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600" id="myTable">
                             <thead class="bg-gray-100 dark:bg-gray-700">
                                 <tr>
                                     <th
@@ -128,6 +128,10 @@
 
 {{-- SCRIPT BELOW HERE --}}
 
+{{-- <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> --}}
+
 <script>
     function deletePost(id, title) {
         Swal.fire({
@@ -144,4 +148,8 @@
             }
         })
     }
+
+    // let table = new DataTable('#myTable');
 </script>
+
+
