@@ -30,7 +30,7 @@
 
                 <!-- SERVICE BOX #1 -->
                 <?php $number = 1; ?>
-                @foreach ($edukasiEfekSamping as $item)
+                @foreach ($konten as $item)
                     <div class="col-md-6">
                         <div class="sbox-4 icon-md wow fadeInUp" data-wow-delay="0.4s">
 

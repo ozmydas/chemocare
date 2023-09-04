@@ -169,14 +169,16 @@
 
 
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="#edukasi-jeniskanker">Jenis Kanker</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('definisi')}}">Definisi Kemoterapi</a></li>
 
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="#edukasi-efeksamping">Penanganan Efek Samping</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('efek-samping')}}">Efek Samping Kemoterapi</a></li>
 
-                                
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="#edukasi-terapi">Terapi</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('penanganan')}}">Penanganan Efek Samping</a></li>
+
+                                <!-- SIMPLE NAVIGATION LINK -->
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('terapi')}}">Terapi</a></li>
 
 
                                 <!-- MEGAMENU -->

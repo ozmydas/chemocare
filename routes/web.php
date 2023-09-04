@@ -27,10 +27,15 @@ use App\Http\Livewire\EducationArticle;
 //     return view('beranda');
 // });
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/terapi', [TerapiController::class, 'index']);
-Route::get('/submit', [TambahDataPasien::class, 'index']);
+
+Route::get('/', [TambahDataPasien::class, 'index']);
+
+Route::get('/definisi', [HomeController::class, 'definisi']);
+// Route::get('/terapi', [TerapiController::class, 'index']);
 Route::post('/tambah', [TambahDataPasien::class, 'tambah']);
+Route::get('/efek-samping', [HomeController::class, 'efeksamping']);
+Route::get('/penanganan', [HomeController::class, 'penanganan']);
+Route::get('/terapi', [HomeController::class, 'terapi']);
 Route::get('/edukasi', [EdukasiController::class, 'index']);
 
 

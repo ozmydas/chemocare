@@ -9,13 +9,15 @@
             <div class="col-lg-10 offset-lg-1 section-title wow fadeInUp" data-wow-delay="0.2s">
 
                 <!-- Section SubTitle -->
-                <span class="section-subtitle bluestone-color">Have Questions? Look Here</span>
+                {{-- <span class="section-subtitle bluest{{$key}}-color">Have Questions? Look Here</span> --}}
 
                 <!-- Title -->
-                <h3 class="h3-lg">Frequently Asked Questions</h3>
+                <h3 class="h3-lg">Penanganan Efek Samping Kemoterapi</h3>
 
                 <!-- Text -->
-                <p class="p-lg">Berikut adalah beberapa pertanyaan umum yang sering diajukan tentang kanker:
+                <p class="p-lg">Kemoterapi merupakan salah satu metode pengobatan kanker yang efektif, namun sering
+                    kali membawa efek samping karena obat-obatan yang digunakan tidak hanya menyerang sel kanker, tetapi
+                    juga sel-sel sehat di tubuh.
                 </p>
 
             </div>
@@ -27,201 +29,45 @@
             <div class="col-lg-10 offset-lg-1">
                 <div id="accordion" role="tablist">
 
+                    <?php $vid = 0; ?>
+                    @foreach ($konten as $key => $item)
+                        <!-- QUESTION #1 -->
+                        <div class="card wow fadeInUp" data-wow-delay="0.4s">
 
-                    <!-- QUESTION #1 -->
-                    <div class="card wow fadeInUp" data-wow-delay="0.4s">
-
-                        <!-- Question -->
-                        <div class="card-header" role="tab" id="headingOne">
-                            <h5 class="h5-sm">
-                                <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true"
-                                    aria-controls="collapseOne">
-                                    Apa itu kanker?
-                                </a>
-                            </h5>
-                        </div>
-
-                        <!-- Answer -->
-                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-                            data-parent="#accordion">
-                            <div class="card-body">
-
-                                <!-- Text -->
-                                <p>Kanker adalah kondisi di mana sel-sel dalam tubuh berkembang secara tidak
-                                    terkendali dan bisa menyerang jaringan sekitarnya.</p>
-
+                            <!-- Question -->
+                            <div class="card-header" role="tab" id="heading{{ $key }}">
+                                <h5 class="h5-sm" onclick="stopAll()">
+                                    <a data-toggle="collapse" href="#collapse{{ $key }}" role="button"
+                                        aria-expanded="true" aria-controls="collapse{{ $key }}">
+                                        {{ $item['title'] }}
+                                    </a>
+                                </h5>
                             </div>
-                        </div>
 
+                            <!-- Answer -->
+                            <div id="collapse{{ $key }}" class="collapse <?= $key = 0 ? 'show' : '' ?>"
+                                role="tabpanel" aria-labelledby="heading{{ $key }}" data-parent="#accordion">
+                                <div class="card-body">
 
-                    </div> <!-- END QUESTION #1 -->
+                                    <!-- Text -->
 
+                                    {!! $item['content'] !!}
+                                </div>
 
-                    <!-- QUESTION #2 -->
-                    <div class="card wow fadeInUp" data-wow-delay="0.6s">
+                                <div style="padding: 50px; border-radius: 20px; margin-top: -50px; overflow:hidden">
 
-                        <!-- Question -->
-                        <div class="card-header" role="tab" id="headingTwo">
-                            <h5 class="h5-sm">
-                                <a class="collapsed" data-toggle="collapse" href="#collapseTwo" role="button"
-                                    aria-expanded="false" aria-controls="collapseTwo">
-                                    Apa penyebab utama kanker?
-                                </a>
-                            </h5>
-                        </div>
+                                    <?php if( $item['video_url'] != ""): ?>
+                                    <div id="player<?= $vid ?>"></div>
 
-                        <!-- Answer -->
-                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo"
-                            data-parent="#accordion">
-                            <div class="card-body">
-
-                                <p>Kanker disebabkan oleh perubahan genetik dalam sel yang dapat dipicu oleh
-                                    faktor lingkungan, gaya hidup, atau faktor genetik.</p>
-
+                                    <?php else: ?>
+                                    <div class="alert alert-warning text-center">Tidak Ada Video</div>
+                                    <?php endif; $vid++?>
+                                </div>
                             </div>
-                        </div>
-
-                    </div> <!-- END QUESTION #2 -->
 
 
-                    <!-- QUESTION #3 -->
-                    <div class="card wow fadeInUp" data-wow-delay="0.8s">
-
-                        <!-- Question -->
-                        <div class="card-header" role="tab" id="headingThree">
-                            <h5 class="h5-sm">
-                                <a class="collapsed" data-toggle="collapse" href="#collapseThree" role="button"
-                                    aria-expanded="false" aria-controls="collapseThree">
-                                    Apa saja gejala awal kanker?
-                                </a>
-                            </h5>
-                        </div>
-
-                        <!-- Answer -->
-                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree"
-                            data-parent="#accordion">
-                            <div class="card-body">
-
-                                <!-- Text -->
-                                <p>Gejala kanker dapat bervariasi, termasuk kelelahan, penurunan berat badan
-                                    tanpa sebab, benjolan yang tumbuh, perubahan kulit, atau perubahan pola
-                                    buang air besar.
-                                </p>
-
-                            </div>
-                        </div>
-
-                    </div> <!-- END QUESTION #3 -->
-
-
-                    <!-- QUESTION #4 -->
-                    <div class="card wow fadeInUp" data-wow-delay="1s">
-
-                        <!-- Question -->
-                        <div class="card-header" role="tab" id="headingFour">
-                            <h5 class="h5-sm">
-                                <a class="collapsed" data-toggle="collapse" href="#collapseFour" role="button"
-                                    aria-expanded="false" aria-controls="collapseFour">
-                                    Bagaimana kanker didiagnosis?
-                                </a>
-                            </h5>
-                        </div>
-
-                        <!-- Answer -->
-                        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour"
-                            data-parent="#accordion">
-                            <div class="card-body">
-
-                                <!-- Text -->
-                                <p>Diagnosis kanker melibatkan pemeriksaan fisik, tes darah, tes gambar seperti
-                                    MRI atau CT scan, dan biopsi.
-                                </p>
-
-                            </div>
-                        </div>
-
-                    </div> <!-- END QUESTION #4 -->
-
-
-                    <!-- QUESTION #5 -->
-                    <div class="card wow fadeInUp" data-wow-delay="1.2s">
-
-                        <!-- Question -->
-                        <div class="card-header" role="tab" id="headingFive">
-                            <h5 class="h5-sm">
-                                <a class="collapsed" data-toggle="collapse" href="#collapseFive" role="button"
-                                    aria-expanded="false" aria-controls="collapseFive">
-                                    Apa perbedaan antara tumor jinak dan tumor ganas?
-                                </a>
-                            </h5>
-                        </div>
-
-                        <!-- Answer -->
-                        <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive"
-                            data-parent="#accordion">
-                            <div class="card-body">
-
-                                <p>Tumor jinak adalah pertumbuhan sel yang tidak menyebar ke jaringan
-                                    sekitarnya, sementara tumor ganas adalah tumor yang bisa menyerang jaringan
-                                    sekitarnya dan menyebar ke bagian tubuh lain.</p>
-
-                            </div>
-                        </div>
-
-                    </div> <!-- END QUESTION #5 -->
-
-                    <!-- QUESTION #6 -->
-                    <div class="card wow fadeInUp" data-wow-delay="1.2s">
-
-                        <!-- Question -->
-                        <div class="card-header" role="tab" id="headingSix">
-                            <h5 class="h5-sm">
-                                <a class="collapsed" data-toggle="collapse" href="#collapseSix" role="button"
-                                    aria-expanded="false" aria-controls="collapseSix">
-                                    Apa saja metode pengobatan kanker yang umum digunakan?
-                                </a>
-                            </h5>
-                        </div>
-
-                        <!-- Answer -->
-                        <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix"
-                            data-parent="#accordion">
-                            <div class="card-body">
-
-                                <p>Metode pengobatan kanker meliputi pembedahan, kemoterapi, radioterapi, terapi
-                                    target, dan imunoterapi.</p>
-
-                            </div>
-                        </div>
-
-                    </div> <!-- END QUESTION #6 -->
-
-                    <!-- QUESTION #7 -->
-                    <div class="card wow fadeInUp" data-wow-delay="1.2s">
-
-                        <!-- Question -->
-                        <div class="card-header" role="tab" id="headingSeven">
-                            <h5 class="h5-sm">
-                                <a class="collapsed" data-toggle="collapse" href="#collapseSeven" role="button"
-                                    aria-expanded="false" aria-controls="collapseSeven">
-                                    Apa itu kemoterapi dan bagaimana cara kerjanya?
-                                </a>
-                            </h5>
-                        </div>
-
-                        <!-- Answer -->
-                        <div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven"
-                            data-parent="#accordion">
-                            <div class="card-body">
-
-                                <p>Kemoterapi adalah pengobatan dengan obat-obatan khusus yang menghambat
-                                    pertumbuhan sel kanker. Obat-obatan ini bisa mempengaruhi sel-sel sehat yang
-                                    berkembang cepat juga.</p>
-
-                            </div>
-                        </div>
-
-                    </div> <!-- END QUESTION #6 -->
+                        </div> <!-- END QUESTION #1 -->
+                    @endforeach
 
 
                 </div> <!-- END ACCORDION -->
@@ -231,3 +77,63 @@
 
     </div> <!-- End container -->
 </section> <!-- END FAQs-1 -->
+
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<button onclick="stopVideo()">STOP VIDEO</button>
+
+<script>
+    @foreach ($konten as $key => $item)
+        var player{{ $key }};
+    @endforeach
+
+
+    function onYouTubeIframeAPIReady() {
+
+
+        @foreach ($konten as $key => $item)
+            player{{ $key }} = new YT.Player('player{{ $key }}', {
+                height: '390',
+                width: '100%',
+                videoId: extractVideoID('<?= $item['video_url'] ?>'),
+                playerVars: {
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        @endforeach
+
+    }
+
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+            setTimeout(stopVideo, 6000);
+        }
+    }
+
+    function stopVideo() {
+        player.stopVideo();
+    }
+
+    function stopAll() {
+        @foreach ($konten as $key => $item)
+            if (typeof player{{ $key }}.stopVideo === 'function') {
+                player{{ $key }}.stopVideo();
+            }
+        @endforeach
+    }
+
+    function extractVideoID(url) {
+        // Mencocokkan format URL seperti: https://youtu.be/mk42E0lZbII atau https://youtu.be?v=mk42E0lZbII
+        var match = url.match(/(?:youtu\.be\/|v=)([^&]+)/);
+        return (match && match[1]) ? match[1] : null;
+    }
+</script>

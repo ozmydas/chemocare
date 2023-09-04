@@ -30,10 +30,18 @@ class TambahDataPasien extends Controller
         ]);
         
         // alihkan halaman ke halaman pegawai
-        return view('home.thankyou');
+        return redirect('definisi');
     }
+
+
+
     
     public function index(){
+        
+        if (session()->has('registered')) {
+            return redirect('/definisi');
+        }
+
         $jeniscancer = DB::table('cancer_categories')->get();
         return view('beranda',['jeniscancer' => $jeniscancer]);
     }

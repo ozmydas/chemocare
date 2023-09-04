@@ -17,9 +17,9 @@
 
                        <!-- Hero Form Button -->
                        <div class="col-lg-12 form-btn" id="myForm">
-                           <button type="submit" class="btn btn-primary tra-white-hover submit" data-toggle="modal"
+                           {{-- <button type="submit" class="btn btn-primary tra-white-hover submit" data-toggle="modal"
                            data-target="#iframeModal">Mulai
-                               Sekarang</button>
+                               Sekarang</button> --}}
                            <!-- <a href="#">Open Iframe</a> -->
 
                            <div class="modal-overlay" id="modalOverlay">
