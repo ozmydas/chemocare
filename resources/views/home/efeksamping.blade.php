@@ -76,7 +76,7 @@
 
         <!-- SECTION TITLE -->
         <div class="row">
-            <div class="col-lg-10 offset-lg-1 section-title wow fadeInUp" data-wow-delay="2.8s">
+            <div class="col-lg-10 offset-lg-1 section-title wow fadeInUp">
                 <p></p>
                 <hr>
                 <!-- Text -->

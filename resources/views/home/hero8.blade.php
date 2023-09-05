@@ -1,6 +1,6 @@
    <!-- HERO-8
        ============================================= -->
-   <section id="hero-8" class="bg-scroll hero-section division">
+   <section id="hero-8" class="bg-scroll hero-section division" style="padding-top: 270px !important;">
        <div class="container">
            <div class="row">
 
@@ -13,7 +13,7 @@
                        <h4>SELAMAT DATANG DI</h4>
 
                        <!-- Title -->
-                       <h2>SELF CARE PASIEN KEMOTERAPIs</h2>
+                       <h2 class="hero">SELF CARE PASIEN KEMOTERAPIs</h2>
 
                        <!-- Hero Form Button -->
                        <div class="col-lg-12 form-btn" id="myForm">
@@ -102,7 +102,7 @@
            z-index: 999 !important;
        }
 
-       .custom-modal .modal-content{
+       .custom-modal .modal-content {
            width: 90vw;
            max-width: 100vw;
        }
@@ -124,5 +124,13 @@
            /* Tinggi iframe adalah 60% dari tinggi viewport */
            border: none;
            /* Menghilangkan border standar dari iframe */
+       }
+
+       #hero-8 {
+           background-image: url('{{url("images/banner-crop.png?12211221")}}');
+       }
+
+       h2.hero{
+           text-shadow: 2px 2px 2px #444, 4px 4px 2px #2980B9
        }
    </style>

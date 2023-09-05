@@ -32,13 +32,13 @@
                     <?php $vid = 0; ?>
                     @foreach ($konten as $key => $item)
                         <!-- QUESTION #1 -->
-                        <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="card wow fadeInUp" data-wow-delay="{{$vid * 0.2}}s">
 
                             <!-- Question -->
                             <div class="card-header" role="tab" id="heading{{ $key }}">
                                 <h5 class="h5-sm" onclick="stopAll()">
                                     <a data-toggle="collapse" href="#collapse{{ $key }}" role="button"
-                                        aria-expanded="true" aria-controls="collapse{{ $key }}">
+                                        aria-expanded="true" aria-controls="collapse{{ $key }}" class="collapsed">
                                         {{ $item['title'] }}
                                     </a>
                                 </h5>
@@ -81,11 +81,15 @@
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
-<button onclick="stopVideo()">STOP VIDEO</button>
+{{-- <button onclick="stopVideo()">STOP VIDEO</button> --}}
 
 <script>
     @foreach ($konten as $key => $item)
+        <?php if( $item['video_url'] != ""): ?>
+        
         var player{{ $key }};
+
+        <?php endif; ?>
     @endforeach
 
 
@@ -93,24 +97,30 @@
 
 
         @foreach ($konten as $key => $item)
+            <?php if( $item['video_url'] != ""): ?>
+
             player{{ $key }} = new YT.Player('player{{ $key }}', {
                 height: '390',
                 width: '100%',
                 videoId: extractVideoID('<?= $item['video_url'] ?>'),
+                host: 'https://www.youtube.com',
                 playerVars: {
-                    'playsinline': 1
+                    'playsinline': 1,
+                    'origin': "https://www.youtube.com"
                 },
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
                 }
             });
+
+            <?php endif; ?>
         @endforeach
 
     }
 
     function onPlayerReady(event) {
-        event.target.playVideo();
+        // event.target.playVideo();
     }
 
     function onPlayerStateChange(event) {
@@ -125,9 +135,13 @@
 
     function stopAll() {
         @foreach ($konten as $key => $item)
+            <?php if( $item['video_url'] != ""): ?>
+
             if (typeof player{{ $key }}.stopVideo === 'function') {
                 player{{ $key }}.stopVideo();
             }
+
+            <?php endif; ?>
         @endforeach
     }
 

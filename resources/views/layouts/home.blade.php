@@ -20,13 +20,13 @@
     <title>CHEMOCARE</title>
 
     <!-- FAVICON AND TOUCH ICONS  -->
-    <link rel="shortcut icon" href="images/icon/2.png" type="image/x-icon">
-    <link rel="icon" href="images/icon/2.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/icon/2.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/icon/2.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/icon/2.png">
-    <link rel="apple-touch-icon" href="images/icon/2.png">
-    <link rel="icon" href="images/icon/2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url('images/pink-ribbon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url('images/pink-ribbon.png') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ url('images/pink-ribbon.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ url('images/pink-ribbon.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url('images/pink-ribbon.png') }}">
+    <link rel="apple-touch-icon" href="{{ url('images/pink-ribbon.png') }}">
+    <link rel="icon" href="{{ url('images/pink-ribbon.png') }}" type="image/x-icon">
 
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
@@ -66,6 +66,10 @@
     <!-- RESPONSIVE CSS -->
     <link href="{{ url('template/css/responsive.css') }}" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Passion+One&display=swap" rel="stylesheet">
+
     <style>
         /* Styles for the modal overlay */
         .modal-overlay {
@@ -96,6 +100,48 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             /* Hide content overflow */
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Passion One', cursive;
+            letter-spacing: 10px !important
+        }
+
+        .tra-menu .wsmainfull.scroll {
+            background: #2980B9 !important
+        }
+
+        .wsmenu-list a:hover {
+            background: #fff;
+            font-size: 1.5em;
+            font-weight: bold !important;
+            color: #2980B9 !important;
+            border-radius: 20px 0 20px 0;
+        }
+
+        .footer {
+            background-color: #2980b9 !important;
+            color: white !important;
+            position: relative;
+        }
+
+        .footer::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background: red;
+            border-top: 60px solid #fff;
+            border-left: 60px solid #2980B9;
+            border-right: 60px solid #2980B9;
         }
     </style>
 </head>
@@ -140,10 +186,12 @@
                 <!-- MOBILE HEADER -->
                 <div class="wsmobileheader clearfix">
                     <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-                    <span class="smllogo smllogo-black"><img src="{{ url('template/images/logo.png') }}"
-                            width="162" height="40" alt="mobile-logo" /></span>
-                    <span class="smllogo smllogo-white"><img src="{{ url('template/images/logo.png') }}"
-                            width="162" height="40" alt="mobile-logo" /></span>
+                    <span class="smllogo smllogo-black"><img src="{{ url('images/pink-ribbon.png') }}" /><img
+                            src="{{ url('images/title.png') }}" width="162" height="40"
+                            alt="mobile-logo" /></span>
+                    <span class="smllogo smllogo-white"><img src="{{ url('images/pink-ribbon.png') }}" /><img
+                            src="{{ url('images/title.png') }}" width="162" height="40"
+                            alt="mobile-logo" /></span>
                     <a href="tel:123456789" class="callusbtn"><i class="fas fa-phone"></i></a>
                 </div>
 
@@ -155,11 +203,13 @@
 
                         <!-- LOGO IMAGE -->
                         <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 334 x 80 pixels) -->
-                        <div class="desktoplogo"><a href="#hero-8" class="logo-black"><img
-                                    src="{{ url('template/images/logo.png') }}" width="182" height="40"
+                        <div class="desktoplogo"><a href="#hero-8" class="logo-black">
+                                <img src="{{ url('images/pink-ribbon.png') }}" /> <img
+                                    src="{{ url('images/title.png') }}" width="182" height="40"
                                     alt="header-logo"></a></div>
-                        <div class="desktoplogo"><a href="#hero-8" class="logo-white"><img
-                                    src="{{ url('template/images/logo.png') }}" width="182" height="40"
+                        <div class="desktoplogo"><a href="#hero-8" class="logo-white">
+                                <img src="{{ url('images/pink-ribbon.png') }}" /> <img
+                                    src="{{ url('images/title.png') }}" width="182" height="40"
                                     alt="header-logo"></a></div>
 
 
@@ -169,20 +219,24 @@
 
 
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('definisi')}}">Definisi Kemoterapi</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{ url('definisi') }}">Definisi
+                                        Kemoterapi</a></li>
 
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('efek-samping')}}">Efek Samping Kemoterapi</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{ url('efek-samping') }}">Efek
+                                        Samping Kemoterapi</a></li>
 
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('penanganan')}}">Penanganan Efek Samping</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a
+                                        href="{{ url('penanganan') }}">Penanganan Efek Samping</a></li>
 
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('terapi')}}">Terapi</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{ url('terapi') }}">Terapi</a>
+                                </li>
 
 
                                 <!-- MEGAMENU -->
-                                
+
 
 
                                 <!-- SIMPLE NAVIGATION LINK -->
@@ -227,8 +281,7 @@
 
         <!-- FOOTER-1
    ============================================= -->
-        <footer id="footer-1" class="pt-100 footer division"
-            style="background-color: #2980b9!important; color: white !important;">
+        <footer id="footer-1" class="pt-100 footer division" style="">
             <div class="container">
 
 
@@ -237,17 +290,22 @@
 
 
                     <!-- FOOTER INFO -->
-                    <div class="col-md-5 col-lg-4">
+                    <div class="col-md-12 col-lg-12">
                         <div class="footer-info mb-40">
 
                             <!-- Footer Logo -->
                             <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 364 x 90 pixels) -->
-                            <img src="{{ url('template/images/logo.png') }}" width="182" height="45"
+                            <img src="{{ url('images/pink-ribbon.png') }}" /><img
+                                src="{{ url('images/title.png') }}" width="182" height="45"
                                 alt="footer-logo">
 
                             <!-- Text -->
-                            <p>Aliquam orci a nullam tempor sapien gravida donec enim ipsum porta justo velna an auctor
-                                undo congue magna laoreet augue sapien
+                            <p>Melalui aplikasi ini, pasien dapat memahami lebih lanjut tentang prosedur kemoterapi,
+                                mengenali dan mengatasi efek samping yang mungkin dialami, serta mendapatkan tips dan
+                                saran tentang perawatan diri selama dan setelah pengobatan. <br /><br />Selain itu,
+                                aplikasi ini juga menyediakan fitur pengingat untuk jadwal pengobatan dan konsultasi,
+                                serta ruang diskusi dimana pasien dapat berbagi pengalaman dan mendukung satu sama lain
+                                dalam menjalani perjalanan pengobatan mereka.
                             </p>
 
                         </div>
@@ -268,7 +326,7 @@
                                 <li>
                                     <p>&copy; Copyright ChemoCare 2023</p>
                                 </li>
-                                
+
                             </ul>
                         </div>
 
@@ -276,7 +334,7 @@
                         <!-- FOOTER SOCIALS LINKS -->
                         <div class="col-lg-4 text-right">
                             <ul class="foo-socials text-center clearfix">
-{{-- 
+                                {{-- 
                                 <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="#" class="ico-google-plus"><i
@@ -342,11 +400,11 @@
     <script>
         new WOW().init();
 
-       window.addEventListener('message', function(event) {
-           if (event.data === 'closeModal') {
-               $('#iframeModal').modal('hide'); // Ganti "modalId" dengan ID modal Anda
-           }
-       }, false);
+        window.addEventListener('message', function(event) {
+            if (event.data === 'closeModal') {
+                $('#iframeModal').modal('hide'); // Ganti "modalId" dengan ID modal Anda
+            }
+        }, false);
     </script>
 
     <script>

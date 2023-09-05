@@ -9,7 +9,11 @@
     <!-- CONTENT-5 ============================================= -->
     <section id="content-5" class="wide-60 content-section division"
         style="background-color: rgba(201, 233, 255, 1); color: black;">
-        <div class="container">
+        <div class="container"
+            style="background: #fff; border-radius: 40px 0 40px 0; box-shadow: 2px 2px 8px rgba(0,0,0,.3); position:relative">
+
+            <img src="{{ url('images/logo.png') }}" style="position: absolute; right: -60px; top: -70px; width: 200px; height: auto; transform:rotate(20deg)" />
+
             <div class="row d-flex align-items-center">
 
 
@@ -25,10 +29,10 @@
                             {!! $konten[0]['title'] !!}
                         </h4>
 
-                        
+
 
                         <!-- Text -->
-                        <div class="cbox-1">
+                        <div class="cbox-1" style="line-height: 2em; font-size: 1.5em">
                             <div class="cbox-1-txt text-justify">
                                 {!! $konten[0]['content'] !!}
 
